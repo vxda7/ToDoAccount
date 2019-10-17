@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block body %}
-  <h1>Index!!!!!!!! THIS is INDEX@ {{visit_num}}</h1>
+  {% for todo in todos %}
+    <div class="alert alert-primary d-flex justify-content-between" role="alert">
+      <span class="">{{todo.due_date}} : {{todo.content}}</span>  
+      <a href="{% url 'todos:delete' todo.id %}" class="btn btn-danger btn-sm">완료</a>
+    </div>
+    
+    
+  {% endfor %}
 {% endblock %}
