@@ -27,7 +27,7 @@ def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            auth_login(request, form)
+            auth_login(request, form.get_user())
             return redirect('todos:index')
     else:
         form = AuthenticationForm()
@@ -35,3 +35,8 @@ def login(request):
         'form': form
     }
     return render(request, 'accounts/form.html', context)
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('todos:index')
